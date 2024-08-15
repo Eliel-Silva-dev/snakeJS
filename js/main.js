@@ -1,10 +1,13 @@
-import { randomNumber } from "./methods/methods.js";
+import { drawGrid } from './grid/grid.js';
+import { ctx } from './selectElements/selectElement.js';
 
 let loopId;
 
 const gameloop = () => {
   clearTimeout(loopId);
-  console.log('teste');
+
+  ctx.clearRect(0, 0, 600, 600);
+  drawGrid();
 
   loopId = setTimeout(() => {
     gameloop();
