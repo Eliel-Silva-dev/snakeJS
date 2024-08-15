@@ -2,6 +2,7 @@ import { drawGrid } from './grid/grid.js';
 import { ctx } from './selectElements/selectElement.js';
 import { drawFood } from './food/food.js';
 import { drawSnake, moveSnake } from './snake/snake.js';
+import { chackEat } from './methods/methods.js';
 
 let loopId;
 
@@ -15,6 +16,7 @@ const gameloop = () => {
   drawFood();
   drawSnake();
   moveSnake();
+  chackEat();
 
   loopId = setTimeout(() => {
     gameloop();

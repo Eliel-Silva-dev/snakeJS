@@ -2,7 +2,7 @@ import { randomPosition, randomColor } from "../methods/methods.js";
 import { ctx } from "../selectElements/selectElement.js";
 import { size } from "../variables/variable.js";
 
-const food = {
+export const food = {
   x: randomPosition(),
   y: randomPosition(),
   color: randomColor(),

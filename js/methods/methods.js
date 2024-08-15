@@ -1,5 +1,7 @@
-import { canvas, score } from '../selectElements/selectElement.js';
+import { audio, canvas, score } from '../selectElements/selectElement.js';
 import { size } from '../variables/variable.js';
+import {snake} from '../snake/snake.js';
+import { food } from '../food/food.js';
 
 const randomNumber = (min, max) => {
   return Math.round(Math.random() * (max - min) + min);
@@ -20,6 +22,28 @@ const randomColor = () => {
 
 export const incrementScore = () => {
   score.textContent = +score.textContent + 10;
+};
+
+export const chackEat = () => {
+  const head = snake[snake.length - 1];
+
+  if(head.x == food.x && head.y == food.y) {
+    incrementScore();
+    snake.push(head);
+    audio.play;
+
+    let x = randomPosition();
+    let y = randomPosition();
+
+    while(snake.find((position) => position.x == x && position.y == y)) {
+      x = randomPosition();
+      y = randomPosition();
+    }
+
+    food.x = x;
+    food.y = y;
+    food.color = randomColor();
+  }
 };
 
 export { randomNumber, randomPosition, randomColor };
