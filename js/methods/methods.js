@@ -1,4 +1,4 @@
-import { canvas } from '../selectElements/selectElement.js';
+import { canvas, score } from '../selectElements/selectElement.js';
 import { size } from '../variables/variable.js';
 
 const randomNumber = (min, max) => {
@@ -16,6 +16,10 @@ const randomColor = () => {
   const blue = randomNumber(0, 255);
 
   return `rgb(${red}, ${green}, ${blue})`;
+};
+
+export const incrementScore = () => {
+  score.textContent = +score.textContent + 10;
 };
 
 export { randomNumber, randomPosition, randomColor };
