@@ -9,4 +9,4 @@ const finalScore = d.querySelector(".final_score > span");
 
 const audio = new Audio("../assets/audio.mp3");
 
-export  { ctx, menu, score, buttonPlay, finalScore, audio };
+export { canvas, ctx, menu, score, buttonPlay, finalScore, audio };
