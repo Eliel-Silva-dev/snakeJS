@@ -1,7 +1,6 @@
-"use strict";
-
 import { randomPosition, randomColor } from "../methods/methods.js";
-import { ctx } from "../variables/variable.js";
+import { ctx } from "../selectElements/selectElement.js";
+import { size } from "../variables/variable.js";
 
 const food = {
   x: randomPosition(),
