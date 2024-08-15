@@ -5,4 +5,7 @@ const initialPosition = { x: 270, y: 240 }; // posição inicial da snake
 let direction = "";
 
 let loopId;
-export { size, initialPosition, direction, loopId };
+
+let snake = [initialPosition];
+
+export { size, initialPosition, direction, loopId, snake };
