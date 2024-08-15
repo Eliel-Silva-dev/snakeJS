@@ -1,7 +1,7 @@
 "use strict";
 
-import { ctx } from "./selectElement";
-import { size, direction } from "./variable";
+import { ctx } from "../selectElements/selectElement.js";
+import { size, direction } from "../variables/variable.js";
 
 const initialPosition = { x: 270, y: 240 }; // posição inicial da snake
 
