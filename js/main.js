@@ -3,6 +3,7 @@ import {
   buttonPlay,
   canvas,
   ctx,
+  finalScore,
   menu,
   score,
 } from './selectElements/selectElement.js';
@@ -14,20 +15,32 @@ let loopId;
 
 export let direction = '';
 
+export let snake = [initialPosition];
+
 const gameloop = () => {
   clearTimeout(loopId);
 
   ctx.clearRect(0, 0, 600, 600); // apaga o game
   drawGrid(); // deseja as linhas do grid
   drawFood(); // desenha a food em random position
-  drawSnake(); // desenha a snake no centro (fixed position)
   moveSnake(); // controla os movimentos da snake
+  drawSnake(); // desenha a snake no centro (fixed position)
   chackEat(); // verifica se pegou a food
   checkCollision(); // verifica se ouve colisão
 
   loopId = setTimeout(() => {
     gameloop(); // chama o game novamente
   }, 300);
+};
+
+export const gameOver = () => {
+  direction = undefined; // parar a movimentação
+  menu.style.display = 'flex'; // mostra o menu
+  finalScore.textContent = score.textContent; // add o score atual ao score final
+  canvas.style.filter = 'blur(2px)'; // desfoca a o fundo do game
+
+  
+  snake = [initialPosition];
 };
 
 document.addEventListener('keydown', ({ key }) => {

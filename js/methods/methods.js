@@ -1,8 +1,7 @@
-import { audio, canvas, finalScore, menu, score } from '../selectElements/selectElement.js';
+import { audio, canvas, score } from '../selectElements/selectElement.js';
 import { size } from '../variables/variable.js';
-import { snake } from '../snake/snake.js';
 import { food } from '../food/food.js';
-import { direction } from '../main.js';
+import { gameOver, snake } from '../main.js';
 
 export const randomNumber = (min, max) => {
   return Math.round(Math.random() * (max - min) + min);
@@ -45,13 +44,6 @@ export const chackEat = () => {
     food.y = y;
     food.color = randomColor();
   }
-};
-
-export const gameOver = () => {
-  direction = undefined; // parar a movimentação
-  menu.style.display = 'flex'; // mostra o menu
-  finalScore.textContent = score.textContent; // add o score atual ao score final
-  canvas.style.filter = 'blur(2px)'; // desfoca a o fundo do game
 };
 
 export const checkCollision = () => {

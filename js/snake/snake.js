@@ -1,10 +1,8 @@
 import { ctx } from '../selectElements/selectElement.js';
 import { size } from '../variables/variable.js';
-import { direction } from '../main.js';
+import { direction, snake } from '../main.js';
 
 export const initialPosition = { x: 270, y: 240 }; // posição inicial da snake
-
-export let snake = [initialPosition];
 
 export const drawSnake = () => {
   ctx.fillStyle = '#ddd'; // cor da snake
@@ -24,19 +22,18 @@ export const moveSnake = () => {
 
   if (direction == 'right') {
     snake.push({ x: head.x + size, y: head.y });
+    snake.shift();
   }
   if (direction == 'left') {
     snake.push({ x: head.x - size, y: head.y });
-    snake.shift()
+    snake.shift();
   }
   if (direction == 'down') {
     snake.push({ x: head.x, y: head.y + size });
-    snake.shift()
+    snake.shift();
   }
   if (direction == 'up') {
     snake.push({ x: head.x, y: head.y - size });
-    snake.shift()
+    snake.shift();
   }
-
-  //snake.shift();
 };
