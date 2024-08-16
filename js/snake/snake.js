@@ -2,7 +2,7 @@ import { ctx } from '../selectElements/selectElement.js';
 import { size } from '../variables/variable.js';
 import { direction } from '../main.js';
 
-const initialPosition = { x: 270, y: 240 }; // posição inicial da snake
+export const initialPosition = { x: 270, y: 240 }; // posição inicial da snake
 
 export let snake = [initialPosition];
 
