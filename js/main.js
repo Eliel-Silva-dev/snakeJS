@@ -33,17 +33,7 @@ const gameloop = () => {
   }, 300);
 };
 
-export const gameOver = () => {
-  direction = undefined; // parar a movimentação
-  menu.style.display = 'flex'; // mostra o menu
-  finalScore.textContent = score.textContent; // add o score atual ao score final
-  canvas.style.filter = 'blur(2px)'; // desfoca a o fundo do game
-
-  
-  snake = [initialPosition];
-};
-
-document.addEventListener('keydown', ({ key }) => {
+const moveKey = ({ key }) => {
   if (key == 'ArrowUp' && direction != 'down') {
     direction = 'up';
   }
@@ -56,12 +46,25 @@ document.addEventListener('keydown', ({ key }) => {
   if (key == 'ArrowLeft' && direction != 'right') {
     direction = 'left';
   }
-});
+};
+
+export const gameOver = () => {
+  direction = undefined; // parar a movimentação
+  menu.style.display = 'flex'; // mostra o menu
+  finalScore.textContent = score.textContent; // add o score atual ao score final
+  canvas.style.filter = 'blur(2px)'; // desfoca a o fundo do game
+
+  document.removeEventListener('keydown', moveKey);
+};
+
+document.addEventListener('keydown', moveKey);
 
 buttonPlay.addEventListener('click', () => {
   score.textContent = '00'; // zena o score
   menu.style.display = 'none'; // remove o menu
   canvas.style.filter = 'none'; // remove o desfoque
+
+  document.addEventListener('keydown', moveKey);
 
   snake = [initialPosition]; // retorna a snake para posição inicial
 });

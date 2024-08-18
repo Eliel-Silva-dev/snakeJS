@@ -30,7 +30,7 @@ export const chackEat = () => {
   if (head.x == food.x && head.y == food.y) {
     incrementScore();
     snake.push(head);
-    audio.play;
+    audio.play();
 
     let x = randomPosition();
     let y = randomPosition();
