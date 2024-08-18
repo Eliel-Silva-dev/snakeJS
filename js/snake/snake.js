@@ -18,22 +18,22 @@ export const drawSnake = () => {
 };
 
 export const moveSnake = () => {
+  if (!direction) return;
+
   const head = snake[snake.length - 1];
 
   if (direction == 'right') {
     snake.push({ x: head.x + size, y: head.y });
-    snake.shift();
   }
   if (direction == 'left') {
     snake.push({ x: head.x - size, y: head.y });
-    snake.shift();
   }
   if (direction == 'down') {
     snake.push({ x: head.x, y: head.y + size });
-    snake.shift();
   }
   if (direction == 'up') {
     snake.push({ x: head.x, y: head.y - size });
-    snake.shift();
   }
+
+  snake.shift();
 };
