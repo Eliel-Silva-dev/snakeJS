@@ -3,7 +3,7 @@
 import style from './page.module.css';
 import { FaPlayCircle } from 'react-icons/fa';
 import { useEffect } from 'react';
-import { randomPosition, randomColor } from '@/shared/func';
+import { randomPosition, randomColor, size } from '@/shared/func';
 
 export default function Home() {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
@@ -13,6 +13,8 @@ export default function Home() {
   const score = document.querySelector('.score_value') as HTMLSpanElement;
   const buttonPlay = document.querySelector('.btn_play') as HTMLButtonElement;
   const finalScore = document.querySelector('#fn_score') as HTMLSpanElement;
+
+  const [direction, setDirection] = useState<string>('');
 
   const audio: HTMLAudioElement = new Audio('../assets/audio.mp3');
 
@@ -62,6 +64,49 @@ export default function Home() {
     }
   };
   /*fim grid*/
+
+  /*inicio snake*/
+  type TInitialPosition = {
+    x: number;
+    y: number;
+  };
+  const initialPosition: TInitialPosition = { x: 270, y: 240 }; // posição inicial da snake
+
+  const drawSnake = () => {
+    ctx.fillStyle = '#ddd'; // cor da snake
+
+    snake.forEach((position, idx) => {
+      if (idx == snake.length - 1) {
+        // se for a ultima posição (a cabeça da snake) - aplica a cor branca;
+        ctx.fillStyle = 'white';
+      }
+
+      ctx.fillRect(position.x, position.y, size, size); // desenha a snake no canvas
+    });
+  };
+
+  const moveSnake = () => {
+    if (!direction) return;
+
+    const head = snake[snake.length - 1];
+
+    if (direction == 'right') {
+      snake.push({ x: head.x + size, y: head.y });
+    }
+    if (direction == 'left') {
+      snake.push({ x: head.x - size, y: head.y });
+    }
+    if (direction == 'down') {
+      snake.push({ x: head.x, y: head.y + size });
+    }
+    if (direction == 'up') {
+      snake.push({ x: head.x, y: head.y - size });
+    }
+
+    snake.shift();
+  };
+  /*fim snake*/
+
   const gameloop = () => {
     clearTimeout(loopId);
 
