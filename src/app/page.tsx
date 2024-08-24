@@ -5,14 +5,14 @@ import { FaPlayCircle } from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 import { randomPosition, randomColor, size } from '@/shared/func';
 
-export default function Home() {
+const Home = () => {
   /*inicio seleção de elementos */
-  const buttonPlay = document.querySelector('.btn_play') as HTMLButtonElement;
-  const finalScore = document.querySelector('#fn_score') as HTMLSpanElement;
-  const score = document.querySelector('.score_value') as HTMLSpanElement;
-  const menu = document.querySelector('.menu_screen') as HTMLDivElement;
-  const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+  const buttonPlay = useRef({} as HTMLButtonElement);
+  const finalScore = useRef({} as HTMLSpanElement);
+  const score = useRef({} as HTMLSpanElement);
+  const menu = useRef({} as HTMLDivElement);
+  const canvas = useRef({} as HTMLCanvasElement);
+  const ctx = canvas.current.getContext('2d') as CanvasRenderingContext2D;
   /*fim seleção de elementos */
 
   const [direction, setDirection] = useState<string>('');
@@ -44,7 +44,7 @@ export default function Home() {
   let snake = [initialPosition];
 
   const incrementScore = () => {
-    score.textContent = `${+(score.textContent as string) + 10}`;
+    score.current.textContent = `${+(score.current.textContent as string) + 10}`;
   };
 
   /*inicio food*/
@@ -70,7 +70,7 @@ export default function Home() {
     ctx.lineWidth = 1;
     ctx.strokeStyle = '#191919';
 
-    for (let i = 30; i < canvas.width; i += 30) {
+    for (let i = 30; i < canvas.current.width; i += 30) {
       ctx.beginPath();
       ctx.lineTo(i, 0);
       ctx.lineTo(i, 600);
@@ -164,9 +164,9 @@ export default function Home() {
   /*inicio gameover */
   const gameOver = () => {
     setDirection(''); // parar a movimentação
-    menu.style.display = 'flex'; // mostra o menu
-    finalScore.textContent = score.textContent; // add o score atual ao score final
-    canvas.style.filter = 'blur(2px)'; // desfoca a o fundo do game
+    menu.current.style.display = 'flex'; // mostra o menu
+    finalScore.current.textContent = score.current.textContent; // add o score atual ao score final
+    canvas.current.style.filter = 'blur(2px)'; // desfoca a o fundo do game
 
     document.removeEventListener('keydown', moveKey);
   };
@@ -175,7 +175,7 @@ export default function Home() {
   /*inicio collision */
   const checkCollision = () => {
     const head = snake[snake.length - 1]; // posição da cabeça
-    const canvasLimit = canvas.width - size; // limite que a snake pode ir
+    const canvasLimit = canvas.current.width - size; // limite que a snake pode ir
     const neckIndex = snake.length - 2; // posição do pescoço
 
     const wallCollision = // bateu na perede?
@@ -211,10 +211,10 @@ export default function Home() {
   useEffect(() => {
     document.addEventListener('keydown', moveKey);
 
-    buttonPlay.addEventListener('click', () => {
-      score.textContent = '00'; // zena o score
-      menu.style.display = 'none'; // remove o menu
-      canvas.style.filter = 'none'; // remove o desfoque
+    buttonPlay.current.addEventListener('click', () => {
+      score.current.textContent = '00'; // zena o score
+      menu.current.style.display = 'none'; // remove o menu
+      canvas.current.style.filter = 'none'; // remove o desfoque
 
       document.addEventListener('keydown', moveKey);
 
@@ -227,21 +227,26 @@ export default function Home() {
   return (
     <main id={style.main_home}>
       <div className={style.score}>
-        score: <span className={style.score_value}>00</span>
+        score:{' '}
+        <span ref={score} className={style.score_value}>
+          00
+        </span>
       </div>
 
-      <div className={style.menu_screen}>
+      <div ref={menu} className={style.menu_screen}>
         <span className={style.game_over}>game over</span>
         <span className={style.final_socre}>
-          score: <span id="fn_score">00</span>
+          score: <span ref={finalScore}>00</span>
         </span>
 
-        <button className={style.btn_play}>
+        <button ref={buttonPlay} className={style.btn_play}>
           <FaPlayCircle />
           Jogar novamente
         </button>
       </div>
-      <canvas id="canvas" width="600" height="600"></canvas>
+      <canvas ref={canvas} width="600" height="600"></canvas>
     </main>
   );
-}
+};
+
+export default Home;
