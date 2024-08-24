@@ -2,15 +2,10 @@
 
 import style from './page.module.css';
 import { FaPlayCircle } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import {
   drawGrid,
-  buttonPlay,
-  canvas,
-  ctx,
-  menu,
-  score,
   drawFood,
   drawSnake,
   initialPosition,
@@ -20,11 +15,20 @@ import {
   moveKey,
 } from '@/shared/func';
 
-let loopId: NodeJS.Timeout;
-
-export let snake = [initialPosition];
-
 export default function Home() {
+  const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d');
+
+  const menu = document.querySelector('.menu_screen') as HTMLDivElement;
+  const score = document.querySelector('.score_value') as HTMLSpanElement;
+  const buttonPlay = document.querySelector('.btn_play') as HTMLButtonElement;
+  const finalScore = document.querySelector('#fn_score') as HTMLSpanElement;
+
+  const audio: HTMLAudioElement = new Audio('../assets/audio.mp3');
+
+  let loopId: NodeJS.Timeout;
+  let snake = [initialPosition];
+
   const gameloop = () => {
     clearTimeout(loopId);
 
@@ -74,7 +78,7 @@ export default function Home() {
           Jogar novamente
         </button>
       </div>
-      <canvas width="600" height="600"></canvas>
+      <canvas id="canvas" width="600" height="600"></canvas>
     </main>
   );
 }
