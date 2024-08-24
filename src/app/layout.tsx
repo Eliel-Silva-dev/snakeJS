@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-import { Lato } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 
 import NavBar from '@/shared/components/NavBar';
 import Footer from '@/shared/components/Footer';
@@ -9,7 +9,7 @@ import { Suspense } from 'react';
 
 import './globals.css';
 
-const lato = Lato({ subsets: ['latin'], weight: ['400', '700', '900'] });
+const poppins = Poppins({ subsets: ['latin'], weight: ['400', '700', '900'] });
 
 export const metadata: Metadata = {
   title: 'Snake game | Hydrah Tec',
@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={lato.className}>
+      <body className={poppins.className}>
         <NavBar />
         <Suspense fallback={<div>Carregando dados da pagina...</div>}>
           {children}
