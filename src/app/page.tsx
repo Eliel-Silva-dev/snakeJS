@@ -6,22 +6,31 @@ import { useEffect, useState } from 'react';
 import { randomPosition, randomColor, size } from '@/shared/func';
 
 export default function Home() {
+  /*inicio seleção de elementos */
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
   const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-
   const menu = document.querySelector('.menu_screen') as HTMLDivElement;
   const score = document.querySelector('.score_value') as HTMLSpanElement;
   const buttonPlay = document.querySelector('.btn_play') as HTMLButtonElement;
   const finalScore = document.querySelector('#fn_score') as HTMLSpanElement;
+  /*fim seleção de elementos */
 
   const [direction, setDirection] = useState<string>('');
 
   const audio: HTMLAudioElement = new Audio('../assets/audio.mp3');
 
+  /*fim types*/
   type TInitialPosition = {
     x: number;
     y: number;
   };
+
+  type TFood = {
+    x: number;
+    y: number;
+    color: string;
+  };
+  /*fim types */
 
   const initialPosition: TInitialPosition = { x: 270, y: 240 }; // posição inicial da snake
 
@@ -34,11 +43,6 @@ export default function Home() {
   };
 
   /*inicio food*/
-  type TFood = {
-    x: number;
-    y: number;
-    color: string;
-  };
 
   const food: TFood = {
     x: randomPosition(),
