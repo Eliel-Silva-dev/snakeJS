@@ -1,0 +1,33 @@
+.privacyPolicies {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+
+  .privacy {
+    max-width: 900px;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    h2 {
+      font-size: 3rem;
+    }
+
+    p {
+      font-size: 1.6rem;
+      line-height: 30px;
+    }
+    ul {
+      padding-left: 15px;
+    }
+    li {
+      font-size: 1.6rem;
+      margin: 15px 0;
+      line-height: 25px;
+      list-style: disc;
+    }
+  }
+}
