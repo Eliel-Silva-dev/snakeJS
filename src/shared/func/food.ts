@@ -1,8 +1,14 @@
-import { randomPosition, randomColor } from "../../../js/methods/methods.js";
-import { ctx } from "./selectElement.js";
-import { size } from "./variable.js";
+import { randomPosition, randomColor } from './methods';
+import { ctx } from './selectElement';
+import { size } from './variable';
 
-export const food = {
+type TFood = {
+  x: number;
+  y: number;
+  color: string;
+};
+
+export const food: TFood = {
   x: randomPosition(),
   y: randomPosition(),
   color: randomColor(),

@@ -12,6 +12,9 @@ html {
   --text_color: #f6f3ff;
   --hover: #f98f5a;
 }
+canvas {
+  background-color: #111;
+}
 
 body {
   background-color: var(--primary_color);

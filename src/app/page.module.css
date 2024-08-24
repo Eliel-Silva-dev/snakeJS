@@ -1,4 +1,4 @@
-body {
+#main_home {
   background-color: #191919;
   display: flex;
   min-height: 100vh;
@@ -6,10 +6,6 @@ body {
   justify-content: center;
   flex-direction: column;
   color: white;
-}
-
-canvas {
-  background-color: #111;
 }
 
 .score {

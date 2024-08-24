@@ -1,8 +1,12 @@
-import { ctx } from '../selectElements/selectElement.js';
-import { size } from '../variables/variable.js';
-import { direction, snake } from '../main.js';
+import { ctx } from './selectElement';
+import { direction, size } from './variable';
+import {snake } from '@/app/page';
 
-export const initialPosition = { x: 270, y: 240 }; // posição inicial da snake
+type TInitialPosition = {
+  x: number;
+  y: number;
+};
+export const initialPosition: TInitialPosition = { x: 270, y: 240 }; // posição inicial da snake
 
 export const drawSnake = () => {
   ctx.fillStyle = '#ddd'; // cor da snake

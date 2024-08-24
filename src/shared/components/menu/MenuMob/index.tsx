@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import style from './style.min.module.css';
 
 import Link from 'next/link';
-import PlusRec from '@/components/PlusRec';
+import PlusRec from '@/shared/components/PlusRec';
 
 const MenuDesk = () => {
   const hamburguerActive = () => {

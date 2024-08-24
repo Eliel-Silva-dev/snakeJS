@@ -1,13 +1,14 @@
+'use client';
+
 import style from './page.module.css';
 import { FaPlayCircle } from 'react-icons/fa';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   drawGrid,
   buttonPlay,
   canvas,
   ctx,
-  finalScore,
   menu,
   score,
   drawFood,
@@ -16,39 +17,14 @@ import {
   moveSnake,
   chackEat,
   checkCollision,
+  moveKey,
 } from '@/shared/func';
 
 let loopId: NodeJS.Timeout;
 
-export let direction = '';
-
 export let snake = [initialPosition];
 
 export default function Home() {
-  const moveKey = ({ key }) => {
-    if (key == 'ArrowUp' && direction != 'down') {
-      direction = 'up';
-    }
-    if (key == 'ArrowDown' && direction != 'up') {
-      direction = 'down';
-    }
-    if (key == 'ArrowRight' && direction != 'left') {
-      direction = 'right';
-    }
-    if (key == 'ArrowLeft' && direction != 'right') {
-      direction = 'left';
-    }
-  };
-
-  export const gameOver = () => {
-    direction = undefined; // parar a movimentação
-    menu.style.display = 'flex'; // mostra o menu
-    finalScore.textContent = score.textContent; // add o score atual ao score final
-    canvas.style.filter = 'blur(2px)'; // desfoca a o fundo do game
-
-    document.removeEventListener('keydown', moveKey);
-  };
-
   const gameloop = () => {
     clearTimeout(loopId);
 
@@ -80,6 +56,7 @@ export default function Home() {
 
     gameloop();
   }, []);
+
   return (
     <main id={style.main_home}>
       <div className={style.score}>

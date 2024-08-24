@@ -1,9 +1,9 @@
-import { audio, canvas, score } from '../selectElements/selectElement.js';
-import { size } from '../variables/variable.js';
-import { food } from '../food/food.js';
-import { gameOver, snake } from '../main.js';
+import { audio, canvas, finalScore, menu, score } from './selectElement';
+import { direction, setDirection, size } from './variable';
+import { food } from './food';
+import { snake } from '@/app/page';
 
-export const randomNumber = (min, max) => {
+export const randomNumber = (min: number, max: number) => {
   return Math.round(Math.random() * (max - min) + min);
 };
 
@@ -21,7 +21,26 @@ export const randomColor = () => {
 };
 
 export const incrementScore = () => {
-  score.textContent = +score.textContent + 10;
+  score.textContent = `${+(score?.textContent as string) + 10}`;
+};
+
+type TMoveKey = {
+  key: string;
+};
+
+export const moveKey = ({ key }: TMoveKey) => {
+  if (key == 'ArrowUp' && direction != 'down') {
+    setDirection('up');
+  }
+  if (key == 'ArrowDown' && direction != 'up') {
+    setDirection('down');
+  }
+  if (key == 'ArrowRight' && direction != 'left') {
+    setDirection('right');
+  }
+  if (key == 'ArrowLeft' && direction != 'right') {
+    setDirection('left');
+  }
 };
 
 export const chackEat = () => {
@@ -62,4 +81,13 @@ export const checkCollision = () => {
   if (wallCollision || selfCollision) {
     gameOver();
   }
+};
+
+export const gameOver = () => {
+  setDirection(''); // parar a movimentação
+  menu.style.display = 'flex'; // mostra o menu
+  finalScore.textContent = score.textContent; // add o score atual ao score final
+  canvas.style.filter = 'blur(2px)'; // desfoca a o fundo do game
+
+  document.removeEventListener('keydown', moveKey);
 };
