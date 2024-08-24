@@ -1,11 +1,11 @@
-import { size } from './variable';
+import { canvasWidth, size } from './variable';
 
 export const randomNumber = (min: number, max: number) => {
   return Math.round(Math.random() * (max - min) + min);
 };
 
 export const randomPosition = () => {
-  const number = randomNumber(0, canvas.width - size);
+  const number = randomNumber(0, canvasWidth - size);
   return Math.round(number / 30) * 30;
 };
 

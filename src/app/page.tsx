@@ -2,7 +2,7 @@
 
 import style from './page.module.css';
 import { FaPlayCircle } from 'react-icons/fa';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { randomPosition, randomColor, size } from '@/shared/func';
 
 export default function Home() {
@@ -18,9 +18,20 @@ export default function Home() {
 
   const audio: HTMLAudioElement = new Audio('../assets/audio.mp3');
 
+  type TInitialPosition = {
+    x: number;
+    y: number;
+  };
+
+  const initialPosition: TInitialPosition = { x: 270, y: 240 }; // posição inicial da snake
+
   let loopId: NodeJS.Timeout;
 
   let snake = [initialPosition];
+
+  const incrementScore = () => {
+    score.textContent = `${+(score.textContent as string) + 10}`;
+  };
 
   /*inicio food*/
   type TFood = {
@@ -66,12 +77,6 @@ export default function Home() {
   /*fim grid*/
 
   /*inicio snake*/
-  type TInitialPosition = {
-    x: number;
-    y: number;
-  };
-  const initialPosition: TInitialPosition = { x: 270, y: 240 }; // posição inicial da snake
-
   const drawSnake = () => {
     ctx.fillStyle = '#ddd'; // cor da snake
 
@@ -107,15 +112,12 @@ export default function Home() {
   };
   /*fim snake*/
 
-  export const incrementScore = () => {
-    score.textContent = `${+(score?.textContent as string) + 10}`;
-  };
-
+  /* inicio movekey */
   type TMoveKey = {
     key: string;
   };
 
-  export const moveKey = ({ key }: TMoveKey) => {
+  const moveKey = ({ key }: TMoveKey) => {
     if (key == 'ArrowUp' && direction != 'down') {
       setDirection('up');
     }
@@ -129,8 +131,10 @@ export default function Home() {
       setDirection('left');
     }
   };
+  /* inicio movekey */
 
-  export const chackEat = () => {
+  /*inicio chackeat */
+  const chackEat = () => {
     const head = snake[snake.length - 1];
 
     if (head.x == food.x && head.y == food.y) {
@@ -151,6 +155,7 @@ export default function Home() {
       food.color = randomColor();
     }
   };
+  /*fim chackeat */
 
   /*inicio gameover */
   const gameOver = () => {

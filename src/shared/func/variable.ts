@@ -1,3 +1,5 @@
 const size: number = 30; // tamanho padrão dos blocos
 
-export { size };
+const canvasWidth: number = 600;
+
+export { size, canvasWidth };
