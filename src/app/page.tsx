@@ -3,21 +3,11 @@
 import style from './page.module.css';
 import { FaPlayCircle } from 'react-icons/fa';
 import { useEffect } from 'react';
-
-import {
-  drawGrid,
-  drawFood,
-  drawSnake,
-  initialPosition,
-  moveSnake,
-  chackEat,
-  checkCollision,
-  moveKey,
-} from '@/shared/func';
+import { randomPosition, randomColor } from '@/shared/func';
 
 export default function Home() {
   const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
   const menu = document.querySelector('.menu_screen') as HTMLDivElement;
   const score = document.querySelector('.score_value') as HTMLSpanElement;
@@ -27,7 +17,32 @@ export default function Home() {
   const audio: HTMLAudioElement = new Audio('../assets/audio.mp3');
 
   let loopId: NodeJS.Timeout;
+  
   let snake = [initialPosition];
+
+  // inicio food
+  type TFood = {
+    x: number;
+    y: number;
+    color: string;
+  };
+
+  const food: TFood = {
+    x: randomPosition(),
+    y: randomPosition(),
+    color: randomColor(),
+  };
+
+  const drawFood = () => {
+    const { x, y, color } = food;
+
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 6;
+    ctx.fillStyle = color;
+    ctx.fillRect(x, y, size, size);
+    ctx.shadowBlur = 0;
+  };
+  //fim food
 
   const gameloop = () => {
     clearTimeout(loopId);
