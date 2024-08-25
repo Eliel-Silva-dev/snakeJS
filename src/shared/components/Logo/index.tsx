@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import style from './style.min.module.css';
-import { FaCookieBite } from 'react-icons/fa';
 
 const Logo = () => {
   return (
     <div id={style.logo_title}>
-      <FaCookieBite />
+      <img src="img/snakeico.svg" alt="icone snake" />
       <h2>
-        <Link href={'/'}>Padaria Vó Rosa</Link>
+        <Link href={'/'}>Snake js</Link>
       </h2>
     </div>
   );

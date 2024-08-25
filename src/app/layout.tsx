@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: 'Snake game | Hydrah Tec',
   description: 'jogo da cobrinha desenvolvido com react e next js',
   keywords: 'jogo cobrinha, snake, ',
-  icons: '',
+  icons: 'img/snakeico.svg',
   robots: 'index, follow',
   authors: [{ name: 'Eliel Silva', url: 'https://github.com/Eliel-Silva-dev' }],
 };
