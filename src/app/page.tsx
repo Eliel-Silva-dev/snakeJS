@@ -15,9 +15,31 @@ const Home = () => {
   const ctx = useRef({} as CanvasRenderingContext2D);
   /*fim seleção de elementos */
 
-  const [direction, setDirection] = useState<string>('');
-
+  //const [direction, setDirection] = useState('down');
+  const direction = useRef<string>('');
   const loopId = useRef<NodeJS.Timeout>();
+
+  type TMoveKey = {
+    key: string;
+  };
+
+  /* inicio movekey */
+  const moveKey = ({ key }: TMoveKey) => {
+    if (key == 'ArrowUp' && direction.current != 'down') {
+      direction.current = 'up';
+      console.log(direction);
+    }
+    if (key == 'ArrowDown' && direction.current != 'up') {
+      direction.current = 'down';
+    }
+    if (key == 'ArrowRight' && direction.current != 'left') {
+      direction.current = 'right';
+    }
+    if (key == 'ArrowLeft' && direction.current != 'right') {
+      direction.current = 'left';
+    }
+  };
+  /* fim movekey */
 
   useEffect(() => {
     const audio: HTMLAudioElement = new Audio('../assets/audio.mp3');
@@ -33,10 +55,6 @@ const Home = () => {
       x: number;
       y: number;
       color: string;
-    };
-
-    type TMoveKey = {
-      key: string;
     };
 
     /*fim types */
@@ -121,24 +139,6 @@ const Home = () => {
       snake.shift();
     };
     /*fim snake*/
-
-    /* inicio movekey */
-    const moveKey = ({ key }: TMoveKey) => {
-      console.log(key);
-      if (key == 'ArrowUp' && direction != 'down') {
-        setDirection('up');
-      }
-      if (key == 'ArrowDown' && direction != 'up') {
-        setDirection('down');
-      }
-      if (key == 'ArrowRight' && direction != 'left') {
-        setDirection('right');
-      }
-      if (key == 'ArrowLeft' && direction != 'right') {
-        setDirection('left');
-      }
-    };
-    /* fim movekey */
 
     /*inicio chackeat */
     const chackEat = () => {
