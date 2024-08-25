@@ -184,6 +184,7 @@ const Home = () => {
     const gameOver = () => {
       direction.current = ''; // parar a movimentação
       audioGame.pause();
+      setActiveControl(false);
       menu.current.style.display = 'flex'; // mostra o menu
       finalScore.current.textContent = score.current.textContent; // add o score atual ao score final
       canvas.current.style.filter = 'blur(2px)'; // desfoca a o fundo do game
@@ -241,6 +242,8 @@ const Home = () => {
       canvas.current.style.filter = 'none'; // remove o desfoque
 
       document.addEventListener('keydown', moveKey);
+
+      setActiveControl(true);
 
       snake = [initialPosition]; // retorna a snake para posição inicial
     });
