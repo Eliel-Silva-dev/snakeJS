@@ -244,16 +244,16 @@ const Home = () => {
 
       <div ref={menu} className={style.menu_screen}>
         <span className={style.game_over}>game over</span>
-        <span className={style.final_socre}>
+        <span className={style.final_score}>
           score: <span ref={finalScore}>00</span>
         </span>
 
         <button ref={buttonPlay} className={style.btn_play}>
           <FaPlayCircle />
-          Jogar novamente
+          Novo Jogo
         </button>
       </div>
-      <canvas ref={canvas} width="600" height="600"></canvas>
+      <canvas id={style.canvas} ref={canvas} width="600" height="600"></canvas>
     </main>
   );
 };
