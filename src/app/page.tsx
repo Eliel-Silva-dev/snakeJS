@@ -2,7 +2,7 @@
 
 import style from './page.module.css';
 import { FaPlayCircle } from 'react-icons/fa';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { randomPosition, randomColor, size } from '@/shared/func';
 
 const Home = () => {
@@ -27,7 +27,6 @@ const Home = () => {
   const moveKey = ({ key }: TMoveKey) => {
     if (key == 'ArrowUp' && direction.current != 'down') {
       direction.current = 'up';
-      console.log(direction);
     }
     if (key == 'ArrowDown' && direction.current != 'up') {
       direction.current = 'down';
@@ -119,32 +118,34 @@ const Home = () => {
     };
 
     const moveSnake = () => {
-      if (!direction) return;
-
+      if (!direction.current) return;
       const head = snake[snake.length - 1];
 
-      if (direction == 'right') {
-        snake.push({ x: head.x + size, y: head.y });
+      if (direction.current == 'right') {
+        snake.push({ x: head?.x + size, y: head?.y });
       }
-      if (direction == 'left') {
-        snake.push({ x: head.x - size, y: head.y });
+      if (direction.current == 'left') {
+        snake.push({ x: head?.x - size, y: head?.y });
       }
-      if (direction == 'down') {
-        snake.push({ x: head.x, y: head.y + size });
+      if (direction.current == 'down') {
+        snake.push({ x: head?.x, y: head?.y + size });
       }
-      if (direction == 'up') {
-        snake.push({ x: head.x, y: head.y - size });
+      if (direction.current == 'up') {
+        snake.push({ x: head?.x, y: head?.y - size });
       }
 
       snake.shift();
     };
     /*fim snake*/
-
+    type THead = {
+      x: number;
+      y: number;
+    };
     /*inicio chackeat */
     const chackEat = () => {
-      const head = snake[snake.length - 1];
+      const head: THead = snake.length > 0 ? snake[snake.length - 1] : snake[0];
 
-      if (head.x == food.x && head.y == food.y) {
+      if (head?.x == food?.x && head?.y == food?.y) {
         incrementScore();
         snake.push(head);
         audio.play();
@@ -166,7 +167,8 @@ const Home = () => {
 
     /*inicio gameover */
     const gameOver = () => {
-      setDirection(''); // parar a movimentação
+      direction.current = ''; // parar a movimentação
+      console.log(direction);
       menu.current.style.display = 'flex'; // mostra o menu
       finalScore.current.textContent = score.current.textContent; // add o score atual ao score final
       canvas.current.style.filter = 'blur(2px)'; // desfoca a o fundo do game
@@ -182,14 +184,16 @@ const Home = () => {
       const neckIndex = snake.length - 2; // posição do pescoço
 
       const wallCollision = // bateu na perede?
-        head.x < 0 ||
-        head.x > canvasLimit ||
-        head.y < 0 ||
-        head.y > canvasLimit;
+        head?.x < 0 ||
+        head?.x > canvasLimit ||
+        head?.y < 0 ||
+        head?.y > canvasLimit;
 
       const selfCollision = snake.find((position, idx) => {
         // bateu em si mesma? se sim retorna um objeto que sera convertido em boolean no if
-        return idx < neckIndex && position.x == head.x && position.y == head.y;
+        return (
+          idx < neckIndex && position.x == head?.x && position.y == head?.y
+        );
       });
 
       if (wallCollision || selfCollision) {
