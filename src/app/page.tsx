@@ -97,7 +97,7 @@ const Home = () => {
       ctx.current.lineWidth = 1;
       ctx.current.strokeStyle = '#191919';
 
-      for (let i = 30; i < canvas.current.width; i += 30) {
+      for (let i = 30; i < canvas?.current.width; i += 30) {
         ctx.current.beginPath();
         ctx.current.lineTo(i, 0);
         ctx.current.lineTo(i, 600);
@@ -130,7 +130,7 @@ const Home = () => {
 
       const head = snake[snake.length - 1];
 
-      if (audioGame.paused) {
+      if (audioGame.paused || audioGame.ended) {
         audioGame.play();
       } else {
         audioGame.play();
