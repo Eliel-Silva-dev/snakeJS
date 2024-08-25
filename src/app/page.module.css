@@ -11,6 +11,7 @@
 #canvas {
   max-width: 500px;
   width: 100%;
+  border: 1px solid var(--secondary_color);
 }
 .score {
   display: flex;
@@ -18,7 +19,7 @@
   align-items: center;
   font-size: 1.8rem;
   position: fixed;
-  top: 50px;
+  top: 60px;
   right: 50px;
 }
 
@@ -44,8 +45,8 @@
 }
 
 .final_score {
-  font-weight: 500;
-  font-size: 1.8rem;
+  font-weight: 600;
+  font-size: 2rem;
   color: var(--secondary_color);
 }
 
@@ -78,7 +79,7 @@
   padding: 10px;
 }
 .arrow.up {
-  top: -10px;
+  top: -5px;
   left: 35px;
 }
 .arrow.down {
