@@ -11,7 +11,7 @@ const MenuDesk = () => {
     const contHamb = document.getElementById(
       'container_hamburguer',
     ) as HTMLElement;
-    contHamb.classList.toggle('style_min_active__D38du');
+    contHamb.classList.toggle('style_min_active__EzYf9');
   };
 
   useEffect(() => {
