@@ -1,7 +1,13 @@
 'use client';
 
 import style from './page.module.css';
-import { FaPlayCircle } from 'react-icons/fa';
+import {
+  FaArrowDown,
+  FaArrowLeft,
+  FaArrowRight,
+  FaArrowUp,
+  FaPlayCircle,
+} from 'react-icons/fa';
 import { useEffect, useRef } from 'react';
 import { randomPosition, randomColor, size } from '@/shared/func';
 
@@ -254,6 +260,42 @@ const Home = () => {
         </button>
       </div>
       <canvas id={style.canvas} ref={canvas} width="600" height="600"></canvas>
+      <div>
+        <div className={style.controls}>
+          <span
+            onClick={() => {
+              direction.current = 'up';
+            }}
+            className={`${style.arrow} ${style.up}`}
+          >
+            <FaArrowUp />
+          </span>
+          <span
+            onClick={() => {
+              direction.current = 'down';
+            }}
+            className={`${style.arrow} ${style.down}`}
+          >
+            <FaArrowDown />
+          </span>
+          <span
+            onClick={() => {
+              direction.current = 'right';
+            }}
+            className={`${style.arrow} ${style.right}`}
+          >
+            <FaArrowRight />
+          </span>
+          <span
+            onClick={() => {
+              direction.current = 'left';
+            }}
+            className={`${style.arrow} ${style.left}`}
+          >
+            <FaArrowLeft />
+          </span>
+        </div>
+      </div>
     </main>
   );
 };

@@ -17,6 +17,9 @@
   flex-direction: column;
   align-items: center;
   font-size: 1.8rem;
+  position: fixed;
+  top: 50px;
+  right: 50px;
 }
 
 .score_value {
@@ -59,4 +62,34 @@
   justify-content: center;
   gap: 5px;
   cursor: pointer;
+}
+.controls {
+  margin-top: 5px;
+  height: 90px;
+  width: 100px;
+  position: relative;
+}
+.arrow {
+  font-size: 2rem;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  position: absolute;
+  padding: 5px;
+}
+.arrow.up {
+  top: 0;
+  left: 35px;
+}
+.arrow.down {
+  bottom: 0;
+  left: 35px;
+}
+.arrow.left {
+  left: 0;
+  top: 25px;
+}
+.arrow.right {
+  right: 0;
+  top: 25px;
 }
