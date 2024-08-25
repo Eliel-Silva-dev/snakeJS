@@ -75,21 +75,21 @@
   color: black;
   border-radius: 5px;
   position: absolute;
-  padding: 5px;
+  padding: 10px;
 }
 .arrow.up {
-  top: 0;
+  top: -10px;
   left: 35px;
 }
 .arrow.down {
-  bottom: 0;
+  bottom: -10px;
   left: 35px;
 }
 .arrow.left {
-  left: 0;
+  left: -10px;
   top: 25px;
 }
 .arrow.right {
-  right: 0;
+  right: -20px;
   top: 25px;
 }
