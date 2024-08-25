@@ -8,7 +8,7 @@ import {
   FaArrowUp,
   FaPlayCircle,
 } from 'react-icons/fa';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { randomPosition, randomColor, size } from '@/shared/func';
 
 const Home = () => {
@@ -19,6 +19,7 @@ const Home = () => {
   const menu = useRef({} as HTMLDivElement);
   const canvas = useRef({} as HTMLCanvasElement);
   const ctx = useRef({} as CanvasRenderingContext2D);
+  const [activeControl, setActiveControl] = useState(true);
   /*fim seleção de elementos */
 
   //const [direction, setDirection] = useState('down');
@@ -48,6 +49,7 @@ const Home = () => {
 
   useEffect(() => {
     const audio: HTMLAudioElement = new Audio('../assets/audio.mp3');
+    const audioGame: HTMLAudioElement = new Audio('../assets/snake.mp3');
     ctx.current = canvas.current.getContext('2d') as CanvasRenderingContext2D;
 
     /*inicio types*/
@@ -125,7 +127,14 @@ const Home = () => {
 
     const moveSnake = () => {
       if (!direction.current) return;
+
       const head = snake[snake.length - 1];
+
+      if (audioGame.paused) {
+        audioGame.play();
+      } else {
+        audioGame.play();
+      }
 
       if (direction.current == 'right') {
         snake.push({ x: head?.x + size, y: head?.y });
@@ -174,7 +183,7 @@ const Home = () => {
     /*inicio gameover */
     const gameOver = () => {
       direction.current = ''; // parar a movimentação
-      console.log(direction);
+      audioGame.pause();
       menu.current.style.display = 'flex'; // mostra o menu
       finalScore.current.textContent = score.current.textContent; // add o score atual ao score final
       canvas.current.style.filter = 'blur(2px)'; // desfoca a o fundo do game
@@ -260,42 +269,44 @@ const Home = () => {
         </button>
       </div>
       <canvas id={style.canvas} ref={canvas} width="600" height="600"></canvas>
-      <div>
-        <div className={style.controls}>
-          <span
-            onClick={() => {
-              direction.current = 'up';
-            }}
-            className={`${style.arrow} ${style.up}`}
-          >
-            <FaArrowUp />
-          </span>
-          <span
-            onClick={() => {
-              direction.current = 'down';
-            }}
-            className={`${style.arrow} ${style.down}`}
-          >
-            <FaArrowDown />
-          </span>
-          <span
-            onClick={() => {
-              direction.current = 'right';
-            }}
-            className={`${style.arrow} ${style.right}`}
-          >
-            <FaArrowRight />
-          </span>
-          <span
-            onClick={() => {
-              direction.current = 'left';
-            }}
-            className={`${style.arrow} ${style.left}`}
-          >
-            <FaArrowLeft />
-          </span>
+      {activeControl && (
+        <div>
+          <div className={style.controls}>
+            <span
+              onClick={() => {
+                direction.current = 'up';
+              }}
+              className={`${style.arrow} ${style.up}`}
+            >
+              <FaArrowUp />
+            </span>
+            <span
+              onClick={() => {
+                direction.current = 'down';
+              }}
+              className={`${style.arrow} ${style.down}`}
+            >
+              <FaArrowDown />
+            </span>
+            <span
+              onClick={() => {
+                direction.current = 'right';
+              }}
+              className={`${style.arrow} ${style.right}`}
+            >
+              <FaArrowRight />
+            </span>
+            <span
+              onClick={() => {
+                direction.current = 'left';
+              }}
+              className={`${style.arrow} ${style.left}`}
+            >
+              <FaArrowLeft />
+            </span>
+          </div>
         </div>
-      </div>
+      )}
     </main>
   );
 };
