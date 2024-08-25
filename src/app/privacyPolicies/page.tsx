@@ -2,9 +2,9 @@ import Link from 'next/link';
 import style from './style.min.module.css';
 
 const PrivacyPolicies = () => {
-  const nameSite = 'Zelo imoveis';
+  const nameSite = 'Snake game';
   const datePolitic =
-    'Esta política é efetiva a partir de 24 de Julho 2024 00:00';
+    'Esta política é efetiva a partir de 25 de Agosto 2024 00:00';
   return (
     <main className={style.privacyPolicies}>
       <section className={style.privacy}>
