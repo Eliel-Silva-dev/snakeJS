@@ -6,7 +6,10 @@ const PlusRec = () => {
   return (
     <div className={style.plus_rec}>
       <Button>
-        <Link href={'/'} target="_blank">
+        <Link
+          href={'/https://portfolio-frontend-eliel-silva.vercel.app/'}
+          target="_blank"
+        >
           + Jogos
         </Link>
       </Button>

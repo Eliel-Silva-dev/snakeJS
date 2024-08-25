@@ -8,15 +8,6 @@ const MenuDesk = () => {
       <li>
         <Link href={'/'}>Inicio</Link>
       </li>
-      <li>
-        <Link href={'/ofertas'}>Ofertas</Link>
-      </li>
-      <li>
-        <Link href={'/menu'}>Menu</Link>
-      </li>
-      <li>
-        <Link href={'/sobre'}>Sobre</Link>
-      </li>
     </ul>
   );
 };

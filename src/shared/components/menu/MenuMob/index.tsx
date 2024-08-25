@@ -4,23 +4,23 @@ import { useEffect } from 'react';
 import style from './style.min.module.css';
 
 import Link from 'next/link';
-import PlusRec from '@/shared/components/PlusRec';
+import Button from '../../buttons/Button';
 
 const MenuDesk = () => {
   const hamburguerActive = () => {
     const contHamb = document.getElementById(
-      'container_hamburguer'
+      'container_hamburguer',
     ) as HTMLElement;
     contHamb.classList.toggle('style_min_active__D38du');
   };
 
   useEffect(() => {
     const menuMobile = document.getElementById(
-      'container_hamburguer'
+      'container_hamburguer',
     ) as HTMLElement;
     const masc = document.getElementById('masc') as HTMLElement;
     const liList = document.querySelectorAll(
-      '#links li'
+      '#links li',
     ) as NodeListOf<Element>;
 
     menuMobile.addEventListener('click', hamburguerActive);
@@ -40,17 +40,15 @@ const MenuDesk = () => {
         <li>
           <Link href={'/'}>Inicio</Link>
         </li>
-        <li>
-          <Link href={'/ofertas'}>Ofertas</Link>
-        </li>
-        <li>
-          <Link href={'/menu'}>Menu</Link>
-        </li>
-        <li>
-          <Link href={'/sobre'}>Sobre</Link>
-        </li>
         <li id={style.plus}>
-          <PlusRec />
+          <Button>
+            <Link
+              href={'/https://portfolio-frontend-eliel-silva.vercel.app/'}
+              target="_blank"
+            >
+              + Jogos
+            </Link>
+          </Button>
         </li>
       </ul>
     </div>
