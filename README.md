@@ -2,13 +2,12 @@
 
 Jogo da cobrinha desenvolvido com react e next js
 
-[Visitar site]()
+[Visitar site](https://snake-js-ten.vercel.app/)
 
 ### Lista com as funcionalidades:
 
-- [x]
-- [x]
-- [x]
+- [x] coleta de itens;
+- [x] score jogo;
 - [x] Implementação da LGPD;
 
 ## 🔧 Instalação
