@@ -277,7 +277,9 @@ const Home = () => {
           <div className={style.controls}>
             <span
               onClick={() => {
-                direction.current = 'up';
+                const clickUp: TMoveKey = { key: 'ArrowUp' };
+                moveKey(clickUp);
+                //direction.current = 'up';
               }}
               className={`${style.arrow} ${style.up}`}
             >
@@ -285,7 +287,9 @@ const Home = () => {
             </span>
             <span
               onClick={() => {
-                direction.current = 'down';
+                const clickDown: TMoveKey = { key: 'ArrowDown' };
+                moveKey(clickDown);
+                //direction.current = 'down';
               }}
               className={`${style.arrow} ${style.down}`}
             >
@@ -293,7 +297,9 @@ const Home = () => {
             </span>
             <span
               onClick={() => {
-                direction.current = 'right';
+                const clickRight: TMoveKey = { key: 'ArrowRight' };
+                moveKey(clickRight);
+                //direction.current = 'right';
               }}
               className={`${style.arrow} ${style.right}`}
             >
@@ -301,7 +307,9 @@ const Home = () => {
             </span>
             <span
               onClick={() => {
-                direction.current = 'left';
+                const clickLeft: TMoveKey = { key: 'ArrowLeft' };
+                moveKey(clickLeft);
+                //direction.current = 'left';
               }}
               className={`${style.arrow} ${style.left}`}
             >
