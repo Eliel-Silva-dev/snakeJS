@@ -1,4 +1,4 @@
-# Projeto Sneke js
+# Projeto Snake js
 
 Jogo da cobrinha desenvolvido com react e next js
 
